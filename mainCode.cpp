@@ -32,6 +32,7 @@ struct Students{
 } stdnt[MAX];
 
 int sizeSt = 4;
+string adminName;
 /*============================================
         MAIN METHOD STARTS
 ============================================*/
@@ -145,7 +146,7 @@ void insertionSortbyName(){
     for(int i = 1; i < sizeSt; i++){
         key = stdnt[i];
         hole = i-1;
-        while(hole >= 0 && stdnt[hole].stuNames < key.stuNames){
+        while(hole >= 0 && stdnt[hole].stuNames > key.stuNames){
             stdnt[hole+1] = stdnt[hole];
             hole--;
         }
@@ -278,7 +279,7 @@ void modifyDataAdmin(){
     while (choice != 0){
         system("cls");
         cout << "\n\t\t\t--------------------------------------\n";
-        cout << "\t\t\t|    Database Modification [Admin]    |\n";
+        cout << "\t\t\t|    Database Modification ["; cout << adminName; cout <<"]    |\n";
         cout << "\t\t\t--------------------------------------\n\n";
         cout << "\t\t\tWhat would you like to do?\n";
         cout << "\t\t\t>> Enter New Student Info          [Press 1]\n";
@@ -404,14 +405,14 @@ void write_on_txt(){
 
 void deleteStuInfo(){
     int key;
-    cout << "\n\nEnter Student ID:\n";
+    cout << "\t\t\n\nEnter Student ID:\n\t\t";
     cin >> key;
     int flag = binarySearch(key);
     if (flag < sizeSt)    {
         sizeSt = sizeSt - 1;
         for (int j=flag; j<sizeSt; j++)
             stdnt[j] = stdnt[j+1];
-        cout << "Deleted Successfully!\n";
+        cout << "\t\tDeleted Successfully!\n";
         write_on_txt();
         cout << "\n\nPress Any Key to Continue..";
         cin.get();
@@ -426,11 +427,14 @@ LOGIN AND CREATE ACCOUNT SECTION
 ============================================*/
 void login(){
     system("cls");
+    cout << "\n\t\t\t--------------------------------------\n";
+    cout << "\t\t\t|                LOGIN               |\n";
+    cout << "\t\t\t--------------------------------------\n\n";
     int i = 0;
     string usrn, psw, username1, password1;
-    cout << "Enter Username:\n";
+    cout << "\t\t\tEnter Username:\n\t\t\t";
     cin >> username1;
-    cout << "Enter Password:\n";
+    cout << "\t\t\tEnter Password:\n\t\t\t";
     cin >> password1;
 
     ifstream read("userdata\\" + username1 + ".txt");
@@ -438,11 +442,12 @@ void login(){
     getline(read, psw);
 
     if (username1 == usrn && password1 == psw){
-        cout << "\n\nLogin Success!\n";
+        cout << "\n\n\t\tLogin Success!\n";
         transform(username1.begin(),username1.end(), username1.begin(), ::toupper);
         cout << "\n\n\t\t----------------------------------\n";
         cout << "\t\tHi,\n\t\t\t" << username1 << endl;
         cout << "\t\t----------------------------------\n\n";
+        adminName = username1;
         cout << "\n\nPress Any Key to Continue..";
         cin.get();
         cin.get();
@@ -454,12 +459,15 @@ void login(){
 
 void createAccount(){
     system("cls");
+    cout << "\n\t\t\t--------------------------------------\n";
+    cout << "\t\t\t|           Create Account           |\n";
+    cout << "\t\t\t--------------------------------------\n\n";
     string userName, passWord;
 
-    cout << "\nSet Username: \n";
+    cout << "\n\t\t\tSet Username: \n\t\t\t";
     getchar();
     getline(cin, userName);
-    cout << "Set Password: \n";
+    cout << "\t\t\tSet Password: \n\t\t\t";
     getline(cin, passWord);
 
     ofstream MyFile;
@@ -481,9 +489,9 @@ void createAccount(){
 ============================================*/
 void welcomeNote(){
     system("cls");
-    cout << "\t\t\t\t--------------------------------------\n";
-    cout << "\t\t\t\t|              THANK YOU               |\n";
-    cout << "\t\t\t\t--------------------------------------\n\n";
+    cout << "\t\t\t--------------------------------------\n";
+    cout << "\t\t\t|              THANK YOU              |\n";
+    cout << "\t\t\t--------------------------------------\n\n";
     cout << setw(23) << "\t\t\t\tOUR TEAM" << endl;
     cout << "\n\t\t\t\tMd. Mezbaul Islam Zion\n\t\t\t\tID: 201-15-3496\n";
     cout << "\n\t\t\t\tMd. Rasheduzzaman Elite\n\t\t\t\tID: 201-15-3235\n";
