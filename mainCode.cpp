@@ -37,7 +37,7 @@ string adminName;
         MAIN METHOD STARTS
 ============================================*/
 int main(){
-    // mkdir("studentData");
+    // mkdir("studentData"); //Uncomment this to create directory automatically
     // mkdir("userdata");
     demoReport();
     int choice = 1;
